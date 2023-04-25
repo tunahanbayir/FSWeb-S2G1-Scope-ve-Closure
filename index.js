@@ -30,10 +30,11 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
   Aşağıdaki skor1 ve skor2 kodlarını inceleyiniz ve aşağıdaki soruları altına not alarak cevaplayın
   
   1. skor1 ve skor2 arasındaki fark nedir?
-  
+  skor 1 closure skor 2 scope'dur.
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
-  
+  skorArtirici fonksiyonu closure kullanmaktadır. Birden fazla değeri elde etmek için kullanılır.
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
+  Skor 1 de skorArtirici yı birden fazla skor içinde tutmak istersek closure fonksiyon olarak tanımlamamız gerekir. Skor 2 bir tane skor tutuyorsak ve tüm işlemlerimiz bu skor üzerinde kullanıyorsak mantıklıdır.
 */
 
 // skor1 kodları
@@ -64,8 +65,8 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+   return 10 + Math.floor(Math.random() * 16);
 }
 
 
@@ -86,8 +87,20 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(takımSkoruCallBack, ceyrekSayisi){
+  let evSahibiSkor = 0;
+  let konukTakımSkor = 0;
+  for(let i = 0; i < ceyrekSayisi; i++){
+    evSahibiSkor += takımSkoruCallBack();
+    konukTakımSkor += takımSkoruCallBack();
+
+  }
+  return {
+    EvSahibi: evSahibiSkor, 
+    KonukTakim: konukTakımSkor, 
+    
+    
+  }
 }
 
 
@@ -109,9 +122,12 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-
+function periyotSkoru(takımSkoruCallBack) {
+  return {
+  EvSahibi: takımSkoruCallBack(),
+  KonukTakim: takımSkoruCallBack(),
+}
+ 
 }
 
 
